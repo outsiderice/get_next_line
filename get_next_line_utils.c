@@ -6,7 +6,7 @@
 /*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 17:11:48 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/08 18:22:18 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:48:29 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,4 @@ char	*ft_strchr(const char *s, int c)
 		return (&a[i]);
 	return (NULL);
 }
+

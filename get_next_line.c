@@ -6,7 +6,7 @@
 /*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 19:31:31 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/08 19:56:47 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:48:25 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ char	*ft_get_text_buffer(int fd, char *text_buffer)
 
 	bytes_read = 1;
 	buffer[0] = '\0';
-	while(!ft_strchr(buffer, '\n') && bytes_read > 0)
+	while(!ft_strchr(text_buffer, '\n') && bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if(bytes_read > 0)
-			text_buffer = ft_strjoin(text, buffer);
+			text_buffer = ft_strjoin(text_buffer, buffer);
 	}
 	return (text_buffer);
 }
@@ -51,10 +51,14 @@ char	*ft_get_line(char *text_buffer, char *line)
 	return (line);
 }
 
-char	*ft_update_text_buffer(char *text_buffer, char *line)
+char	*ft_update_text_buffer(char *text_buffer, char *line_end)
 {
-	// take line out of the buffer
-	return(buffer);
+	char	*update;
+	int		len;
+
+	len = -1;
+
+	return(update);
 }
 	
 char	*get_next_line(int fd)
@@ -70,7 +74,7 @@ char	*get_next_line(int fd)
 	}
 	text_buffer = ft_get_text_buffer(fd, text_buffer);
 	line = ft_get_line(text_buffer);
-	text_buffer = ft_update_text_buffer(line, text_buffer);
+	text_buffer = ft_update_text_buffer(text_buffer, ft_strchr(text_buffer, '\n'));
 	return(line);
 }
 
@@ -91,4 +95,5 @@ int	main(void)
 
 /*
 might have a problem with that strjoin malloc, gotta look at it again later
+ft_update_text is substr.
 */

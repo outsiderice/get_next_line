@@ -6,7 +6,7 @@
 /*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 12:43:53 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/08 18:59:36 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:49:03 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 char	*get_next_line(int fd);
 char	*ft_get_text_buffer(int fd);
 char	*ft_get_line(char *text_buffer, char *line);
-char	*ft_update_text_buffer(char *text_buffer, char *line);
+char	*ft_update_text_buffer(char *text_buffer, char *line_end);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
 
