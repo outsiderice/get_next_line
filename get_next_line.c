@@ -59,7 +59,7 @@ char	*ft_update_text_buffer(char *text_buffer)
 
 	len = 0;
 	len2 = 0;
-	while(text_buffer[len] != '\n' && text_buffer[len] != '\0')
+	while(text_buffer[len] != '\n' || text_buffer[len] != '\0')
 		len++;
 	len = len + 1;
 	while(text_buffer[len2])
