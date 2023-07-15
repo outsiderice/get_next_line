@@ -6,13 +6,13 @@
 /*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 17:11:48 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/12 19:34:56 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:44:56 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*s3;
 	int		i;
@@ -20,9 +20,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = -1;
 	j = -1;
+	if (!s1)
+	{
+		s1 = malloc(sizeof(char) * 1);
+		if (!s1)
+			return (NULL);
+		s1[0] = '\0';
+	}
+	printf("s1 is: %s\n s2 is: %s\n", s1, s2);
+	printf("s1:%zu s2:%zu\n", ft_strlen(s1), ft_strlen(s2));
 	s3 = malloc (ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (s3 == NULL)
+	{
+		free(&s1);
 		return (NULL);
+	}
 	while (s1[++i])
 		s3[i] = s1[i];
 	while (s2[++j])
@@ -31,21 +43,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (s3);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
-	int				i;
-	char			*a;
-
-	i = 0;
-	a = (char *)s;
-	while (a[i] != '\0')
-	{
-		if (a[i] == (char)c)
-			return (&a[i]);
-		i++;
-	}
-	if ((char)c == '\0')
-		return (&a[i]);
+	while (*s && (*s != (char)c))
+		s++;
+	if (*s == (char)c || (char)c == '\0')
+		return((char *)s);
 	return (NULL);
 }
 

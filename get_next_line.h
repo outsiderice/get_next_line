@@ -6,7 +6,7 @@
 /*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 12:43:53 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/12 19:35:41 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/15 15:03:20 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 9
+#  define BUFFER_SIZE 9
 # endif
 
 char	*get_next_line(int fd);
 char	*ft_get_text_buffer(int fd, char *text_buffer);
 char	*ft_get_line(char *text_buffer, char *line);
 char	*ft_update_text_buffer(char *text_buffer);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(const char *s);
 
 #endif
