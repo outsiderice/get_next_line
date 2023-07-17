@@ -21,7 +21,6 @@ char	*ft_get_text_buffer(int fd, char *text_buffer)
 	printf("I'm about to assign text to text buffer, text_buffer = %s\n", text_buffer);
 	bytes_read = 1;
 	buffer[0] = '\0';
-	printf("hello?\n");
 	while (bytes_read > 0)
 	{
 		printf("did I segfault here?\n");
@@ -34,7 +33,6 @@ char	*ft_get_text_buffer(int fd, char *text_buffer)
 		}
 	}
 	a = printf("text buffer now:%s\n", text_buffer);
-	printf("len wrong? %i", a);
 	return (text_buffer);
 }
 
