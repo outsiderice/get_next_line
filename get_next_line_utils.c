@@ -6,7 +6,7 @@
 /*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 17:11:48 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/15 17:44:56 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/18 20:29:39 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,43 @@ size_t	ft_strlen(const char *s)
 		i++;
 	}
 	return (i);
+}
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	size_t			i;
+	unsigned char	*a;
+	unsigned char	*b;
+
+	a = (unsigned char *)src;
+	b = (unsigned char *)dst;
+	i = 0;
+	if (len)
+	{
+		if (a < b)
+		{
+			while (len--)
+				b[len] = a[len];
+		}
+		else if (b < a)
+		{
+			while (i < len)
+			{
+				b[i] = a[i];
+				i++;
+			}
+		}
+	}
+	return (dst);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*s2;
+
+	s2 = malloc(ft_strlen(s1) + 1);
+	if (s2 == NULL)
+		return (NULL);
+	ft_memcpy(s2, s1, ft_strlen (s1) + 1);
+	return (s2);
 }
