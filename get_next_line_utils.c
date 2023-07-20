@@ -6,7 +6,7 @@
 /*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 17:11:48 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/18 20:29:39 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:37:54 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ char	*ft_strjoin(char *s1, char *s2)
 			return (NULL);
 		s1[0] = '\0';
 	}
-	printf("s1 is: %s\n s2 is: %s\n", s1, s2);
-	printf("s1:%zu s2:%zu\n", ft_strlen(s1), ft_strlen(s2));
-	s3 = malloc (ft_strlen(s1) + ft_strlen(s2) + 1);
+	s3 = malloc (sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (s3 == NULL)
 	{
 		free(&s1);
@@ -52,19 +50,19 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dst, void *src, size_t len)
 {
 	size_t			i;
 	unsigned char	*a;
@@ -92,7 +90,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	return (dst);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	char	*s2;
 

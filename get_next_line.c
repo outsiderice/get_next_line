@@ -6,13 +6,13 @@
 /*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 19:31:31 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/18 20:56:03 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/20 21:02:50 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, void *src, size_t n)
 {
 	size_t			i;
 	unsigned char	*a;
@@ -35,9 +35,7 @@ char	*ft_get_text_buffer(int fd, char *text_buffer)
 {
 	char	buffer[BUFFER_SIZE + 1];
 	int		bytes_read;
-	int		a;
 
-	printf("I'm about to assign text to text buffer, text_buffer = %s\n", text_buffer);
 	bytes_read = 1;
 	buffer[0] = '\0';
 	while (bytes_read > 0)
@@ -50,20 +48,17 @@ char	*ft_get_text_buffer(int fd, char *text_buffer)
 			text_buffer = ft_strjoin(text_buffer, buffer);
 		}
 	}
-	a = printf("text buffer now:%s\n", text_buffer);
+	if (bytes_read < 0)
+	{
+		free(text_buffer);
+		text_buffer = NULL;
+	}
 	return (text_buffer);
 }
 
-char	*ft_get_line(char *text_buffer, char *line)
+char	*ft_get_line(char *text_buffer, char *line, size_t len)
 {
-	int	len;
-
-	len = 0;
-	printf("about to enter while loop\n");
-	while (text_buffer[len] != '\n' && text_buffer[len] != '\0')
-		len++;
-	printf("len is %i\n", len);
-	line = malloc(len + 2);
+	line = malloc(len + 1);
 	if (line == NULL)
 		return (NULL);
 	len = 0;
@@ -108,24 +103,20 @@ char	*get_next_line(int fd)
 	size_t		len;
 	size_t		line_len;
 
-	line_len = 0;
+	printf("hello\n");
 	line = NULL;
-	if (fd == '\0')
-	{
-		free(text_buffer);
-		text_buffer = NULL;
+	line_len = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	}
 	text_buffer = ft_get_text_buffer(fd, text_buffer);
+	if (!text_buffer)
+		return (NULL);
 	while (text_buffer[line_len] != '\n' && text_buffer[line_len] != '\0')
 		line_len++;
 	line_len = line_len + 1;
-	line = ft_get_line(text_buffer, line);
-	printf("line_len: %zu\n", line_len);
+	line = ft_get_line(text_buffer, line, line_len);
 	len = ft_strlen(text_buffer) - line_len;
-	text_buffer = ft_update_text_buffer(text_buffer, (int)ft_strchr(text_buffer, '\n'), len);
-	printf("update is:%s\n", text_buffer);
-	printf("return line:%s\n", line);
+	text_buffer = ft_update_text_buffer(text_buffer, line_len, len);
 	return (line);
 }
 /*
