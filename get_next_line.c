@@ -135,7 +135,3 @@ int	main(void)
 	return (0);
 }
 */
-/*
-might have a problem with that strjoin malloc, gotta look at it again later
-ft_update_text is substr.
-*/
