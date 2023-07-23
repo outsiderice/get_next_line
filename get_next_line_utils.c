@@ -89,14 +89,3 @@ void	*ft_memmove(void *dst, void *src, size_t len)
 	}
 	return (dst);
 }
-
-char	*ft_strdup(char *s1)
-{
-	char	*s2;
-
-	s2 = malloc(ft_strlen(s1) + 1);
-	if (s2 == NULL)
-		return (NULL);
-	ft_memcpy(s2, s1, ft_strlen (s1) + 1);
-	return (s2);
-}
