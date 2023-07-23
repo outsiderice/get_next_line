@@ -78,7 +78,10 @@ char	*ft_update_text_buffer(char *s, unsigned int start, size_t len)
 	char	*str;
 
 	if (start >= ft_strlen(s) || len == 0)
-		return (ft_strdup(""));
+	{
+		str = NULL;
+		return (str);
+	}
 	if (ft_strlen(s) - start > len)
 	{
 		str = malloc (len + 1);
