@@ -31,6 +31,5 @@ char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(char *s);
 void	*ft_memcpy(void *dst, void *src, size_t n);
 void	*ft_memmove(void *dst, void *src, size_t len);
-char	*ft_strdup(char *s1);
 
 #endif
