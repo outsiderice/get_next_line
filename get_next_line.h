@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amagnell <amagnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 12:43:53 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/20 20:32:57 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/26 21:16:41 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 9
+#  define BUFFER_SIZE 1000000000
 # endif
 
 char	*get_next_line(int fd);
 char	*ft_get_text_buffer(int fd, char *text_buffer);
-char	*ft_get_line(char *text_buffer, char *line, size_t len);
-char	*ft_update_text_buffer(char *s, unsigned int start, size_t len);
+char	*ft_get_line(char *text_buffer, size_t len);
+char	*ft_update_text_buffer(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(char *s);
-void	*ft_memcpy(void *dst, void *src, size_t n);
-void	*ft_memmove(void *dst, void *src, size_t len);
+char	*ft_free(char *s);
+size_t	ft_line_len(char *text);
 
 #endif

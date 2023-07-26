@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amagnell <amagnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 17:11:48 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/20 20:37:54 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/26 21:24:05 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,20 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = -1;
 	if (!s1)
 	{
-		s1 = malloc(sizeof(char) * 1);
+		s1 = (char *)malloc(sizeof(char) * 1);
 		if (!s1)
 			return (NULL);
 		s1[0] = '\0';
 	}
 	s3 = malloc (sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (s3 == NULL)
-	{
-		free(&s1);
-		return (NULL);
-	}
+	if (!s3)
+		return (ft_free(s1));
 	while (s1[++i])
 		s3[i] = s1[i];
 	while (s2[++j])
 		s3[i + j] = s2[j];
 	s3[i + j] = '\0';
+	free(s1);
 	return (s3);
 }
 
@@ -46,7 +44,7 @@ char	*ft_strchr(char *s, int c)
 	while (*s && (*s != (char)c))
 		s++;
 	if (*s == (char)c || (char)c == '\0')
-		return((char *)s);
+		return ((char *)s);
 	return (NULL);
 }
 
@@ -62,30 +60,20 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-void	*ft_memmove(void *dst, void *src, size_t len)
+char	*ft_free(char *s)
 {
-	size_t			i;
-	unsigned char	*a;
-	unsigned char	*b;
+	free(s);
+	return (NULL);
+}
 
-	a = (unsigned char *)src;
-	b = (unsigned char *)dst;
-	i = 0;
-	if (len)
-	{
-		if (a < b)
-		{
-			while (len--)
-				b[len] = a[len];
-		}
-		else if (b < a)
-		{
-			while (i < len)
-			{
-				b[i] = a[i];
-				i++;
-			}
-		}
-	}
-	return (dst);
+size_t	ft_line_len(char *text)
+{
+	size_t	line_len;
+
+	line_len = 0;
+	while (text[line_len] != '\0' && text[line_len] != '\n')
+		line_len++;
+	if (text[line_len] == '\n')
+		line_len++;
+	return (line_len);
 }

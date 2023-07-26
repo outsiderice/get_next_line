@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagnell <amagnell@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amagnell <amagnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:32:48 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/20 19:55:19 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:14:27 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ int	main(void)
 	int		fd;
 	char	*line;
 
-	line = "a";
-	fd = open("text.txt", O_RDONLY);
+	fd = open("variable_nl.txt", O_RDONLY);
+	line = get_next_line(fd);
 	if (fd == -1)
 		return (1);
 	while (line)
 	{
+		free(line);
 		line = get_next_line(fd);
-		printf("%s", line);
+		printf("line in main:<%s>", line);
 	}
 	close(fd);
 	return (0);
