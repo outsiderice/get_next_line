@@ -6,7 +6,7 @@
 /*   By: amagnell <amagnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 19:31:31 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/26 21:23:41 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:41:17 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 char	*ft_get_text_buffer(int fd, char *text_buffer)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
 	int		bytes_read;
 
 	bytes_read = 1;
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (ft_free(text_buffer));
 	buffer[0] = '\0';
 	while (bytes_read > 0 && !ft_strchr(buffer, '\n'))
 	{
@@ -33,6 +36,7 @@ char	*ft_get_text_buffer(int fd, char *text_buffer)
 		free(text_buffer);
 		text_buffer = NULL;
 	}
+	free(buffer);
 	return (text_buffer);
 }
 

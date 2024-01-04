@@ -6,7 +6,7 @@
 /*   By: amagnell <amagnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 17:11:48 by amagnell          #+#    #+#             */
-/*   Updated: 2023/07/26 21:24:05 by amagnell         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:42:34 by amagnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strjoin(char *s1, char *s2)
 			return (NULL);
 		s1[0] = '\0';
 	}
-	s3 = malloc (sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	s3 = malloc (sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
 	if (!s3)
 		return (ft_free(s1));
 	while (s1[++i])
@@ -63,6 +63,7 @@ size_t	ft_strlen(char *s)
 char	*ft_free(char *s)
 {
 	free(s);
+	s = NULL;
 	return (NULL);
 }
 
